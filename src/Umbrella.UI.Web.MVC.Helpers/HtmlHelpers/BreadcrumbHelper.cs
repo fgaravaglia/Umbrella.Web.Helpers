@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
+using Umbrella.UI.Web.MVC.Helpers;
 
 namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
 
-namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
+namespace Umbrella.UI.Web.MVC.Helpers
 {
     /// <summary>
     /// Abstraction of Bootstrp component helper
