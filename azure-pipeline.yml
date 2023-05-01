@@ -63,6 +63,8 @@ extends:
         isWebProj: False
       - path: src/Umbrella.UI.Web.MVC.Helpers
         name: Umbrella.UI.Web.MVC.Helpers
+        publishRequired: false
+        isWebProj: False
     ListOfProjToTest:
       - path: src/Umbrella.UI.Web.MVCWidgets.Tests
         name: Umbrella.UI.Web.MVCWidgets.Tests
