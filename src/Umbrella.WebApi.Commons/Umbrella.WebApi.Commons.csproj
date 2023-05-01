@@ -14,11 +14,11 @@
 		<Company>Innova Solutions</Company>
 		<Authors>FG</Authors>
 		<Copyright>FG 2023</Copyright>
-		<PackageProjectUrl>https://github.com/fgaravaglia/Umbrella.WebApi.Commons</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/fgaravaglia/Umbrella.Web.Helpers</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/fgaravaglia/Umbrella.WebApi.Commons</RepositoryUrl>
+		<RepositoryUrl>https://github.com/fgaravaglia/Umbrella.Web.Helpers</RepositoryUrl>
 		<PackageReleaseNotes>
 		</PackageReleaseNotes>
 	</PropertyGroup>
