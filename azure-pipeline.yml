@@ -61,6 +61,8 @@ extends:
         name: Umbrella.WebApi.Commons
         publishRequired: false
         isWebProj: False
+      - path: src/Umbrella.UI.Web.MVC.Helpers
+        name: Umbrella.UI.Web.MVC.Helpers
     ListOfProjToTest:
       - path: src/Umbrella.UI.Web.MVCWidgets.Tests
         name: Umbrella.UI.Web.MVCWidgets.Tests
@@ -69,3 +71,5 @@ extends:
         name: Umbrella.UI.Web.MVCWidgets
       - path: src/Umbrella.WebApi.Commons
         name: Umbrella.WebApi.Commons
+      - path: src/Umbrella.UI.Web.MVC.Helpers
+        name: Umbrella.UI.Web.MVC.Helpers

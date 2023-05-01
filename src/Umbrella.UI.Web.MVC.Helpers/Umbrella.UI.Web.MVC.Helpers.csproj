@@ -5,12 +5,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <PropertyGroup>
-    <PackageId>Umbrella.UI.Web.MVCWidgets</PackageId>
+    <PackageId>Umbrella.UI.Web.MVC.Helpers</PackageId>
     <Company>Innova Solutions</Company>
     <Authors>FG</Authors>
-    <Description>Library to implement Widgets using MVC technology Stack</Description>
+    <Description>Library to implement MVC Helpers for HTML components</Description>
     <Copyright>FG 2023</Copyright>
     <PackageProjectUrl>https://github.com/fgaravaglia/Umbrella.Web.Helpers</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -19,13 +18,14 @@
     <RepositoryUrl>https://github.com/fgaravaglia/Umbrella.Web.Helpers</RepositoryUrl>
   </PropertyGroup>
 
-
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="" />
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.2.0" />
   </ItemGroup>
+
 </Project>
