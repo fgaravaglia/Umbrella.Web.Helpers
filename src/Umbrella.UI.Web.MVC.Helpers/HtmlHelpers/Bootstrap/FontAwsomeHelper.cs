@@ -76,13 +76,7 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers.Bootstrap
             return this;
         }
 
-        public FontAwsomeHelper WithIconAsStart()
-        {
-            this._IconClass = "fa-star";
-            return this;
-        }
-
-        public FontAwsomeHelper WithIconAsEye()
+        public FontAwsomeHelper WithIconEye()
         {
             this._IconClass = "fa-eye";
             return this;

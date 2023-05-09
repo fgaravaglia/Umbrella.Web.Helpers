@@ -30,10 +30,10 @@ namespace Umbrella.UI.Web.MVCWidgets
             if (descr == null)
                 throw new ArgumentNullException(nameof(descr));
             if (string.IsNullOrEmpty(descr.ID))
-                throw new ArgumentNullException(nameof(descr) + ".ID");
+                throw new ArgumentNullException(nameof(descr), "ID cannot be null");
 
             if (this._WidgetRegistry.ContainsKey(descr.ID))
-                throw new ApplicationException($"Unable to add widget {descr.ID} - {descr.Title}: item already added");
+                throw new ArgumentException($"Unable to add widget {descr.ID} - {descr.Title}: item already added");
 
             this._WidgetRegistry.Add(descr.ID, descr);
         }
