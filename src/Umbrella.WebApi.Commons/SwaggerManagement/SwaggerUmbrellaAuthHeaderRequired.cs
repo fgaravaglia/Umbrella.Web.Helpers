@@ -6,14 +6,14 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement
     /// Attribute to add header param called UmbrellaAuth
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class SwaggerUmbrellaAuthHeaderRequired : SwaggerHeaderAttribute
+    public class SwaggerUmbrellaAuthHeaderRequiredAttribute : SwaggerHeaderAttribute
     {
         internal const string ParameterName = "UmbrellaAuth";
 
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public SwaggerUmbrellaAuthHeaderRequired() 
+        public SwaggerUmbrellaAuthHeaderRequiredAttribute() 
             : base(ParameterName, description: "Set the Umbrella Authentication token for the call",  isRequired: true)
         {
         }

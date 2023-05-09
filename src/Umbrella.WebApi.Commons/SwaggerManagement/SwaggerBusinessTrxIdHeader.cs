@@ -6,14 +6,14 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement
     /// Attribute to add header param called trxId
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class SwaggerBusinessTrxIdHeader : SwaggerHeaderAttribute
+    public class SwaggerBusinessTrxIdHeaderAttribute : SwaggerHeaderAttribute
     {
         public const string ParameterName = "businessTrxId";
 
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public SwaggerBusinessTrxIdHeader() 
+        public SwaggerBusinessTrxIdHeaderAttribute() 
             : base(ParameterName, description: "Set the Business Transaction Id for the call",  isRequired: false)
         {
         }

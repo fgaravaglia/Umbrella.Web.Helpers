@@ -40,8 +40,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement
                        In = ParameterLocation.Header,
                        Type = SecuritySchemeType.ApiKey
                    });
-                   //options.SwaggerDoc("MyHealth-Headache-api", new OpenApiInfo { Title = "__DOMAINNAME api", Version = "v1" });
-
+                   
                    // format numbers
                    options.MapType<decimal>(() => new OpenApiSchema { Type = "number", Format = "decimal" });
                    options.MapType<decimal?>(() => new OpenApiSchema { Type = "number", Format = "decimal" });

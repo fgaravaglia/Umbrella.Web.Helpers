@@ -50,7 +50,6 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement
                 // settings the schema
                 if (!String.IsNullOrEmpty(attribute.EnumType))
                 {
-                    List<IOpenApiAny> validEnums = new List<IOpenApiAny>();
                     if (attribute.EnumType == SwaggerChannelHeaderRequired.ParameterName)
                     {
                         // get valid channels

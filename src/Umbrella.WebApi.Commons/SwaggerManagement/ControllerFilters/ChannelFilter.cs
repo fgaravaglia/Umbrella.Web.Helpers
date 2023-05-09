@@ -26,8 +26,6 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
             _Logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _Config = config ?? throw new ArgumentNullException(nameof(config));
         }
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -90,21 +88,6 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
         }
 
         #region Private methods
-
-        private string ExtractUmbrellaAuthTokenFromHeader(HttpRequest req)
-        {
-            if (req == null)
-                throw new ArgumentNullException(nameof(req));
-
-            string umbrellaAuthToken = "";
-            _Logger.Debug("Current Headers {headers}", req.Headers);
-            if (req.Headers.Any(p => p.Key.Equals(SwaggerUmbrellaAuthHeaderRequired.ParameterName, StringComparison.CurrentCultureIgnoreCase)))
-                umbrellaAuthToken = req.Headers
-                                        .Single(p => p.Key.Equals(SwaggerUmbrellaAuthHeaderRequired.ParameterName, StringComparison.CurrentCultureIgnoreCase))
-                                            .Value.ToString();
-
-            return umbrellaAuthToken;
-        }
 
         private MethodInfo ExtractMethodFromController(ActionExecutingContext context)
         {
