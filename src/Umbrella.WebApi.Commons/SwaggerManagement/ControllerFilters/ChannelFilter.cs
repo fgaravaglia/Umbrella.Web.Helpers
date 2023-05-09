@@ -38,30 +38,30 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
 
                 //check if the method is auhtenticated or not
                 var actionMethod = ExtractMethodFromController(context);
-                var attribute = actionMethod.GetCustomAttributes(typeof(SwaggerChannelHeaderRequired), true)
-                                                                              .Select(x => (SwaggerChannelHeaderRequired)x).FirstOrDefault();
+                var attribute = actionMethod.GetCustomAttributes(typeof(SwaggerChannelHeaderRequiredAttribute), true)
+                                                                              .Select(x => (SwaggerChannelHeaderRequiredAttribute)x).FirstOrDefault();
                 if (attribute == null)
                     return;
 
                 // read channel value from header
                 string channelValue = "";
                 _Logger.Debug("Current Headers {headers}", context.HttpContext.Request.Headers);
-                if (context.HttpContext.Request.Headers.Any(p => p.Key.Equals(SwaggerChannelHeaderRequired.ParameterName, StringComparison.CurrentCultureIgnoreCase)))
+                if (context.HttpContext.Request.Headers.Any(p => p.Key.Equals(SwaggerChannelHeaderRequiredAttribute.ParameterName, StringComparison.CurrentCultureIgnoreCase)))
                     channelValue = context.HttpContext.Request.Headers
-                                            .Single(p => p.Key.Equals(SwaggerChannelHeaderRequired.ParameterName, StringComparison.CurrentCultureIgnoreCase))
+                                            .Single(p => p.Key.Equals(SwaggerChannelHeaderRequiredAttribute.ParameterName, StringComparison.CurrentCultureIgnoreCase))
                                                 .Value.ToString();
                 else
                     channelValue = "";
 
                 // verify acchannel is set
                 if (string.IsNullOrEmpty(channelValue) && attribute.IsRequired)
-                    throw new InvalidDataException(SwaggerChannelHeaderRequired.ParameterName + " is null");
+                    throw new InvalidDataException(SwaggerChannelHeaderRequiredAttribute.ParameterName + " is null");
 
                 // verify channel is valid
                 var settings = _Config.GetSection("Authentication:ValidChannels").Value ?? "";
                 var validChannels = settings.Split(';').Select(x => x.ToUpperInvariant().Trim()).ToList();
                 if (!validChannels.Contains(channelValue.ToUpperInvariant().Trim()))
-                    throw new InvalidDataException(SwaggerChannelHeaderRequired.ParameterName + " is invalid");
+                    throw new InvalidDataException(SwaggerChannelHeaderRequiredAttribute.ParameterName + " is invalid");
             }
             catch (InvalidDataException securityEx)
             {

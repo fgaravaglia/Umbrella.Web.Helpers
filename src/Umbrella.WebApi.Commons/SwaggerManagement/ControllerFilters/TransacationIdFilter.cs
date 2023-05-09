@@ -34,24 +34,24 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
 
                 //check if the method is auhtenticated or not
                 var actionMethod = ExtractMethodFromController(context);
-                var attribute = actionMethod.GetCustomAttributes(typeof(SwaggerTrxIdHeaderRequired), true)
-                                                                              .Select(x => (SwaggerTrxIdHeaderRequired)x).FirstOrDefault();
+                var attribute = actionMethod.GetCustomAttributes(typeof(SwaggerTrxIdHeaderRequiredAttribute), true)
+                                                                              .Select(x => (SwaggerTrxIdHeaderRequiredAttribute)x).FirstOrDefault();
                 if (attribute == null)
                     return;
 
                 // read channel value from header
                 string headerValue = "";
                 _Logger.Debug("Current Headers {headers}", context.HttpContext.Request.Headers);
-                if (context.HttpContext.Request.Headers.Any(p => p.Key.Equals(SwaggerTrxIdHeaderRequired.ParameterName, StringComparison.CurrentCultureIgnoreCase)))
+                if (context.HttpContext.Request.Headers.Any(p => p.Key.Equals(SwaggerTrxIdHeaderRequiredAttribute.ParameterName, StringComparison.CurrentCultureIgnoreCase)))
                     headerValue = context.HttpContext.Request.Headers
-                                            .Single(p => p.Key.Equals(SwaggerTrxIdHeaderRequired.ParameterName, StringComparison.CurrentCultureIgnoreCase))
+                                            .Single(p => p.Key.Equals(SwaggerTrxIdHeaderRequiredAttribute.ParameterName, StringComparison.CurrentCultureIgnoreCase))
                                                 .Value.ToString();
                 else
                     headerValue = "";
 
                 // verify acchannel is set
                 if (string.IsNullOrEmpty(headerValue) && attribute.IsRequired)
-                    throw new InvalidDataException(SwaggerChannelHeaderRequired.ParameterName + " is null");
+                    throw new InvalidDataException(SwaggerChannelHeaderRequiredAttribute.ParameterName + " is null");
             }
             catch (InvalidDataException securityEx)
             {

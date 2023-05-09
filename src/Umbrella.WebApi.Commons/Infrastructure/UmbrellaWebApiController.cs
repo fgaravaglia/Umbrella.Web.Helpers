@@ -39,7 +39,7 @@ namespace Umbrella.WebApi.Commons.Infrastructure
         /// <returns></returns>
         protected string? ExtractChannelFromHeaders(HttpRequest req)
         {
-            return ExtractHeader(req, SwaggerChannelHeaderRequired.ParameterName);
+            return ExtractHeader(req, SwaggerChannelHeaderRequiredAttribute.ParameterName);
         }
         /// <summary>
         /// Process the request, validating the headers too
@@ -107,15 +107,15 @@ namespace Umbrella.WebApi.Commons.Infrastructure
 
             try
             {
-                channel = ExtractHeader(req, SwaggerChannelHeaderRequired.ParameterName) ?? "";
+                channel = ExtractHeader(req, SwaggerChannelHeaderRequiredAttribute.ParameterName) ?? "";
                 if (String.IsNullOrEmpty(channel))
-                    throw new InvalidOperationException($"Header {SwaggerChannelHeaderRequired.ParameterName} is missing");
+                    throw new InvalidOperationException($"Header {SwaggerChannelHeaderRequiredAttribute.ParameterName} is missing");
 
-                trxId = ExtractHeader(req, SwaggerTrxIdHeaderRequired.ParameterName) ?? "";
+                trxId = ExtractHeader(req, SwaggerTrxIdHeaderRequiredAttribute.ParameterName) ?? "";
                 if (String.IsNullOrEmpty(trxId))
-                    throw new InvalidOperationException($"Header {SwaggerTrxIdHeaderRequired.ParameterName} is missing");
+                    throw new InvalidOperationException($"Header {SwaggerTrxIdHeaderRequiredAttribute.ParameterName} is missing");
 
-                businessTrxId = ExtractHeader(req, SwaggerBusinessTrxIdHeader.ParameterName) ?? "";
+                businessTrxId = ExtractHeader(req, SwaggerBusinessTrxIdHeaderAttribute.ParameterName) ?? "";
                 return null;
             }
             catch (Exception ex)

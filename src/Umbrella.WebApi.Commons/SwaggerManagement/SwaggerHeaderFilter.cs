@@ -50,7 +50,8 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement
                 // settings the schema
                 if (!String.IsNullOrEmpty(attribute.EnumType))
                 {
-                    if (attribute.EnumType == SwaggerChannelHeaderRequired.ParameterName)
+                    var validEnums = new List<Microsoft.OpenApi.Any.IOpenApiAny>();
+                    if (attribute.EnumType == SwaggerChannelHeaderRequiredAttribute.ParameterName)
                     {
                         // get valid channels
                         var channels = new List<string>() { "GARAAPP", "MyHealth" };

@@ -44,8 +44,8 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
                
                 //check if the method is auhtenticated or not
                 var actionMethod = ExtractMethodFromController(context);
-                var umbrellaAuthRequiredAttributes = actionMethod.GetCustomAttributes(typeof(SwaggerUmbrellaAuthHeaderRequired), true)
-                                                                              .Select(x => (SwaggerUmbrellaAuthHeaderRequired)x).ToList();
+                var umbrellaAuthRequiredAttributes = actionMethod.GetCustomAttributes(typeof(SwaggerUmbrellaAuthHeaderRequiredAttribute), true)
+                                                                              .Select(x => (SwaggerUmbrellaAuthHeaderRequiredAttribute)x).ToList();
                 var isAuthenticated = umbrellaAuthRequiredAttributes.Any();
                 if (!isAuthenticated)
                     return;
@@ -53,7 +53,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
                 // read umbrella token from request
                 string umbrellaAuthToken = ExtractUmbrellaAuthTokenFromHeader(context.HttpContext.Request);
                 if (String.IsNullOrEmpty(umbrellaAuthToken))
-                    throw new InvalidDataException(SwaggerUmbrellaAuthHeaderRequired.ParameterName + " is null");  
+                    throw new InvalidDataException(SwaggerUmbrellaAuthHeaderRequiredAttribute.ParameterName + " is null");  
 
                 // verify actual clients configuration
                 var settings = this._Config.GetAuthenticationSettings(); 
@@ -101,9 +101,9 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
 
             string umbrellaAuthToken = "";
             this._Logger.Debug("Current Headers {headers}", req.Headers);
-            if (req.Headers.Any(p => p.Key.Equals(SwaggerUmbrellaAuthHeaderRequired.ParameterName, StringComparison.CurrentCultureIgnoreCase)))
+            if (req.Headers.Any(p => p.Key.Equals(SwaggerUmbrellaAuthHeaderRequiredAttribute.ParameterName, StringComparison.CurrentCultureIgnoreCase)))
                 umbrellaAuthToken = req.Headers
-                                        .Single(p => p.Key.Equals(SwaggerUmbrellaAuthHeaderRequired.ParameterName, StringComparison.CurrentCultureIgnoreCase))
+                                        .Single(p => p.Key.Equals(SwaggerUmbrellaAuthHeaderRequiredAttribute.ParameterName, StringComparison.CurrentCultureIgnoreCase))
                                             .Value.ToString();
                                             
             return umbrellaAuthToken;
