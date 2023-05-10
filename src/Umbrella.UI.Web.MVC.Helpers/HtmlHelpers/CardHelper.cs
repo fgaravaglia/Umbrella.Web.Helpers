@@ -9,11 +9,11 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
     public class CardHelper : IBootstrapHtmlHelper
     {
         #region Fields
-        string _Title;
+        readonly string _Title;
         string _BadgeText;
         string _BadgeCssClass;
 
-        bool _Collapsible = true;
+        bool _Collapsible;
         #endregion
 
         /// <summary>
