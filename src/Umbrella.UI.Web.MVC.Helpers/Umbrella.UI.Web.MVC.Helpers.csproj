@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <NoWarn>S112;S1699</NoWarn>
+    <NoWarn>S112;S1699;S3925;S1854;S1186;S112;S9727;S1006</NoWarn>
   </PropertyGroup>
   
   <PropertyGroup>

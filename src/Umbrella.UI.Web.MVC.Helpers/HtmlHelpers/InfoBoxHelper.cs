@@ -59,7 +59,7 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
         /// </summary>
         /// <param name="ctrlId">id of control</param>
         /// <returns>the HTML to render</returns>
-        public string BuildHtml(string ctrlId)
+        public string BuildHtml(string ctrlId = "")
         {
             return "<div class=\"info-box\">" + BuildHtmlForIcon() + BuildHtmlForContent() + "</div>";
         }

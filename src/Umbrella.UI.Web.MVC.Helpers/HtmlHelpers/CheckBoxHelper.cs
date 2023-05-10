@@ -39,9 +39,9 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
         /// <summary>
         /// Builds the Html part for control
         /// </summary>
-        /// <param name="ctrlValue">value of control</param>
+        /// <param name="ctrlId">id of control</param>
         /// <returns>the HTML to render</returns>
-        public string BuildHtml(string ctrlValue)
+        public string BuildHtml(string ctrlId = "")
         {
             string disabledAttribute = " ";
             if (this._IsReadOnly)
@@ -50,8 +50,8 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
             if (this._IsChecked)
                 checkedAttribute = "checked";
             string id = "";
-            if (!string.IsNullOrEmpty(ctrlValue))
-                id = "id=\"{ctrlValue}\"";
+            if (!string.IsNullOrEmpty(ctrlId))
+                id = "id=\"{ctrlId}\"";
 
             return $"<input class=\"form-check-input\" type=\"checkbox\" value=\"\" {id} {checkedAttribute} {disabledAttribute}>";
         }

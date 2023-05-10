@@ -70,9 +70,9 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
         /// <summary>
         /// Builds the Html part for control
         /// </summary>
-        /// <param name="ctrlValue">value of control</param>
+        /// <param name="ctrlId">id of control</param>
         /// <returns>the HTML to render</returns>
-        public string BuildHtml(string ctrlValue)
+        public string BuildHtml(string ctrlId = "")
         {
             string htmlHeader = BuildHtmlForHeader();
             string htmlBody = "";

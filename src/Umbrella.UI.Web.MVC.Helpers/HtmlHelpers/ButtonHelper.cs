@@ -118,7 +118,7 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
             return this;
         }
 
-        public string BuildHtml(string ctrlId)
+        public string BuildHtml(string ctrlId = "")
         {
             string html = "";
 

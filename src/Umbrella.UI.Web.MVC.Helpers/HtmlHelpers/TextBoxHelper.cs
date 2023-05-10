@@ -72,7 +72,7 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
         /// </summary>
         /// <param name="ctrlId">ID of control</param>
         /// <returns>the HTML to render</returns>
-        public string BuildHtml(string ctrlId)
+        public string BuildHtml(string ctrlId = "")
         {
             if (this._ControlType == "text")
                 return $"<input class=\"form-control\" type=\"text\" value=\"{this._ControlValue}\" id=\"{this._ID}\" placeholder=\"{this._PlaceHolderText}\" {this._DisabledAttribute}>";
