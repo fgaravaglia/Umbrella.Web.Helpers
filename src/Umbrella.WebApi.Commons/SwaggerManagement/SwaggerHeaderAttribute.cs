@@ -7,6 +7,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement
     /// Attribute to set the proper headers also in Swagger file
     /// </summary>
     [ExcludeFromCodeCoverage]
+    [AttributeUsage(AttributeTargets.Method)]
     public class SwaggerHeaderAttribute : Attribute
     {
         /// <summary>

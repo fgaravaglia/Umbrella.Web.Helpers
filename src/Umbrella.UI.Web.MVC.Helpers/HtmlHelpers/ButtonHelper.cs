@@ -197,12 +197,13 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
         #region Private Methods
         string BuildHtmlForGridRow(string ctrlId, string buttonText)
         {
+            string id = String.IsNullOrEmpty(ctrlId) ? Guid.NewGuid().ToString() : ctrlId;
             string html = "";
             string href = String.IsNullOrEmpty(this._GoToUrl) ? "" : $"href=\"{this._GoToUrl}\"";
             string targetModal = String.IsNullOrEmpty(this._ModalId) ? "" : $"data-bs-toggle=\"modal\" data-bs-target=\"#{this._ModalId}\"";
             string clickfunction = String.IsNullOrEmpty(this._OnClick) ? "" : $"onCLick=\"{this._OnClick}\"";
 
-            html += ($"<a {href} class=\"btn btn-{this._ButtonLayoutType}\" data-toggle=\"tooltip\" title=\"{buttonText}\" {targetModal} {clickfunction}>" + Environment.NewLine);
+            html += ($"<a {href} id=\"{id}\" class=\"btn btn-{this._ButtonLayoutType}\" data-toggle=\"tooltip\" title=\"{buttonText}\" {targetModal} {clickfunction}>" + Environment.NewLine);
             if (this._IconHelper != null)
             {
                 html += ("   " + this._IconHelper.BuildHtml() + Environment.NewLine.ToString());

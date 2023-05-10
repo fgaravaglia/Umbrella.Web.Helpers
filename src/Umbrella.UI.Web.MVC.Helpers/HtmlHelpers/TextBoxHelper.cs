@@ -74,10 +74,12 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
         /// <returns>the HTML to render</returns>
         public string BuildHtml(string ctrlId = "")
         {
-            if (this._ControlType == "text")
-                return $"<input class=\"form-control\" type=\"text\" value=\"{this._ControlValue}\" id=\"{this._ID}\" placeholder=\"{this._PlaceHolderText}\" {this._DisabledAttribute}>";
+            string id = String.IsNullOrEmpty(ctrlId) ? this._ID : ctrlId;
 
-            return $"<textarea class=\"form-control\" rows=\"{this._TextAreaRows}\" id=\"{this._ID}\" placeholder=\"{this._PlaceHolderText}\" {this._DisabledAttribute}>{this._ControlValue}</textarea>";
+            if (this._ControlType == "text")
+                return $"<input class=\"form-control\" type=\"text\" value=\"{this._ControlValue}\" id=\"{id}\" placeholder=\"{this._PlaceHolderText}\" {this._DisabledAttribute}>";
+
+            return $"<textarea class=\"form-control\" rows=\"{this._TextAreaRows}\" id=\"{id}\" placeholder=\"{this._PlaceHolderText}\" {this._DisabledAttribute}>{this._ControlValue}</textarea>";
         }
     }
 }

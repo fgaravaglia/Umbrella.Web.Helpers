@@ -37,7 +37,7 @@ namespace Umbrella.WebApi.Commons.Infrastructure
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        protected string? ExtractChannelFromHeaders(HttpRequest req)
+        protected static string? ExtractChannelFromHeaders(HttpRequest req)
         {
             return ExtractHeader(req, SwaggerChannelHeaderRequiredAttribute.ParameterName);
         }
