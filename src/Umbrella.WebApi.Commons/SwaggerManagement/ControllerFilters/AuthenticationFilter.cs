@@ -60,7 +60,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
                 var clientID = umbrellaAuthToken.Split('|')[0];
                 var applicationID = umbrellaAuthToken.Split('|')[1];
                 if(!settings.Clients.Any(x => x.ClientID.Equals(clientID, StringComparison.InvariantCultureIgnoreCase) 
-                                            && x.ApplicationID.Equals(clientID, StringComparison.InvariantCultureIgnoreCase)))
+                                            && x.ApplicationID.Equals(applicationID, StringComparison.InvariantCultureIgnoreCase)))
                 {
                     throw new UmbrellaTokenInvalidException("Client is not authorized to consume API", clientID, applicationID);
                 }
