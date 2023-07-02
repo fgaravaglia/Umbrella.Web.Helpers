@@ -20,5 +20,10 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
             var innerHtml = helper.BuildHtml("");
             return new HtmlString(innerHtml);
         }
+
+        public static IHtmlContent RenderCardHeader(string title)
+        {
+            return new CardHelper(title).RenderCardHeader();
+        }
     }
 }
