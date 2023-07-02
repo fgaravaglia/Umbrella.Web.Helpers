@@ -6,6 +6,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement
     /// Attribute to add header param called trxId
     /// </summary>
     [ExcludeFromCodeCoverage]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class SwaggerTrxIdHeaderRequiredAttribute : SwaggerHeaderAttribute
     {
         public const string ParameterName = "trxId";

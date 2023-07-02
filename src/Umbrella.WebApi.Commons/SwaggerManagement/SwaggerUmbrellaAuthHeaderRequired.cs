@@ -6,6 +6,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement
     /// Attribute to add header param called UmbrellaAuth
     /// </summary>
     [ExcludeFromCodeCoverage]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class SwaggerUmbrellaAuthHeaderRequiredAttribute : SwaggerHeaderAttribute
     {
         internal const string ParameterName = "UmbrellaAuth";

@@ -106,6 +106,12 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers.Bootstrap
             return this;
         }
 
+        public FontAwsomeHelper WithIconCircleCheck()
+        {
+            this._IconClass = "fa-circle-check";
+            return this;
+        }
+
         public FontAwsomeHelper WithIconCircleInfo()
         {
             this._IconClass = "fa-circle-info";
@@ -118,6 +124,11 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers.Bootstrap
             return this;
         }
 
+        public FontAwsomeHelper WithIconCircleXmark()
+        {
+            this._IconClass = "fa-circle-xmark";
+            return this;
+        }
         public FontAwsomeHelper WithIconClock()
         {
             this._IconClass = "fa-clock";

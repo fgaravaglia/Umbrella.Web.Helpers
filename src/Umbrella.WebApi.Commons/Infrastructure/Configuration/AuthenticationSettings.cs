@@ -1,5 +1,3 @@
-
-
 namespace Umbrella.WebApi.Commons.Infrastructure.Configuration
 {
     /// <summary>
@@ -12,13 +10,17 @@ namespace Umbrella.WebApi.Commons.Infrastructure.Configuration
         /// </summary>
         /// <value></value>
         public List<ClientSettings> Clients { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ValidChannels { get; set; }
         /// <summary>
         /// EMpty COnstr
         /// </summary>
         public AuthenticationSettings()
         {
             this.Clients = new List<ClientSettings>();
+            this.ValidChannels = "";
         }
     }
     /// <summary>
@@ -41,7 +43,11 @@ namespace Umbrella.WebApi.Commons.Infrastructure.Configuration
         /// </summary>
         /// <value></value>
         public string ApplicationID { get; set; }
-
+        /// <summary>
+        /// secret
+        /// </summary>
+        /// <value></value>
+        public string SecretID { get; set; }
         /// <summary>
         /// empty COnstr
         /// </summary>
@@ -50,6 +56,7 @@ namespace Umbrella.WebApi.Commons.Infrastructure.Configuration
             this.Name = "";
             this.ApplicationID = "";
             this.ClientID = "";
+            this.SecretID = "";
         }
     }
 }

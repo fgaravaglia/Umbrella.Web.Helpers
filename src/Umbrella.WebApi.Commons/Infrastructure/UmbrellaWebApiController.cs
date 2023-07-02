@@ -81,7 +81,7 @@ namespace Umbrella.WebApi.Commons.Infrastructure
                         return errorAction.Invoke(trxId, ex);
                     else
                     {
-                        if(ex.GetType() == typeof(ArgumentNullException))
+                        if(ex.GetType() == typeof(ArgumentNullException) || ex.GetType() == typeof(ArgumentException))
                             return new BadRequestActionResult(ex.Message, trxId);
                         else
                             return new InternalServerErrorActionResult(ex.Message, trxId);

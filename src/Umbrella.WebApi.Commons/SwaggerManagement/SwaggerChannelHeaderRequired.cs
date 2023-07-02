@@ -6,6 +6,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement
     /// Attribute to add header param called channel
     /// </summary>
     [ExcludeFromCodeCoverage]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class SwaggerChannelHeaderRequiredAttribute : SwaggerHeaderAttribute
     {
         public const string ParameterName = "channel";
