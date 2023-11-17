@@ -1,15 +1,10 @@
-using System;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
-using Serilog;
-using Umbrella.WebApi.Commons.Infrastructure.Configuration;
+using Umbrella.IdentityManagement.ClientAuthentication;
 using Umbrella.WebApi.Commons.Infrastructure.ErrorManagement;
 using Umbrella.WebApi.Commons.Infrastructure.ErrorManagements;
-using Umbrella.WebApi.Commons.SwaggerManagement;
 
 namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
 {
@@ -58,11 +53,11 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
                 // verify actual clients configuration
                 var settings = this._Config.GetAuthenticationSettings(); 
                 var clientID = umbrellaAuthToken.Split('|')[0];
-                var applicationID = umbrellaAuthToken.Split('|')[1];
+                var secretId = umbrellaAuthToken.Split('|')[1];
                 if(!settings.Clients.Any(x => x.ClientID.Equals(clientID, StringComparison.InvariantCultureIgnoreCase) 
-                                            && x.ApplicationID.Equals(applicationID, StringComparison.InvariantCultureIgnoreCase)))
+                                            && x.SecretID.Equals(secretId, StringComparison.InvariantCultureIgnoreCase)))
                 {
-                    throw new UmbrellaTokenInvalidException("Client is not authorized to consume API", clientID, applicationID);
+                    throw new UmbrellaTokenInvalidException("Client is not authorized to consume API", clientID);
                 }
             }
             catch(UmbrellaTokenInvalidException securityEx)

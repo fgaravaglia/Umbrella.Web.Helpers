@@ -11,11 +11,7 @@ namespace Umbrella.WebApi.Commons.Infrastructure.ErrorManagements
         /// </summary>
         /// <value></value>
         public string ClientID { get; private set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <value></value>
-        public string ApplicationId { get; private set; }
+
         /// <summary>
         /// Default COnstr
         /// </summary>
@@ -23,10 +19,9 @@ namespace Umbrella.WebApi.Commons.Infrastructure.ErrorManagements
         /// <param name="clientId"></param>
         /// <param name="applicationId"></param>
         /// <returns></returns>
-        public UmbrellaTokenInvalidException(string message, string clientId, string applicationId) : base(message)
+        public UmbrellaTokenInvalidException(string message, string clientId) : base(message)
         {
             this.ClientID = clientId;
-            this.ApplicationId = applicationId;
         }
     }
 }
