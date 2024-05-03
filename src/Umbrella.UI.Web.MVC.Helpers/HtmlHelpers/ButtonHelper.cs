@@ -18,6 +18,7 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
         string _BtnText;
         string _ModalId;
         string _OnClick;
+        string _BlazorOnCLick;
 
         FontAwsomeHelper _IconHelper;
 
@@ -28,9 +29,10 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
             DisplayedAsInfo();
             this._ModalId = "";
             this._ButtonLayoutType = "";
-            this._GoToUrl ="";
+            this._GoToUrl = "";
             this._BtnText = "";
             this._OnClick = "";
+            this._BlazorOnCLick = "";
             this._IconHelper = new FontAwsomeHelper();
         }
         /// <summary>
@@ -86,6 +88,14 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
             return this;
         }
 
+        public ButtonHelper RequiresBlazorFunctionOnCLick(string function)
+        {
+            if (String.IsNullOrEmpty(function))
+                throw new ArgumentNullException(nameof(function));
+            this._ModalId = "";
+            this._BlazorOnCLick = function;
+            return this;
+        }
         public ButtonHelper RequiresDefaultModalToProceed()
         {
             return RequiresModalToProceed("modal-default");
@@ -202,8 +212,9 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
             string href = String.IsNullOrEmpty(this._GoToUrl) ? "" : $"href=\"{this._GoToUrl}\"";
             string targetModal = String.IsNullOrEmpty(this._ModalId) ? "" : $"data-bs-toggle=\"modal\" data-bs-target=\"#{this._ModalId}\"";
             string clickfunction = String.IsNullOrEmpty(this._OnClick) ? "" : $"onCLick=\"{this._OnClick}\"";
+            string blazorClickfunction = String.IsNullOrEmpty(this._BlazorOnCLick) ? "" : ("@" + $"onCLick=\"{this._BlazorOnCLick}\"");
 
-            html += ($"<a {href} id=\"{id}\" class=\"btn btn-{this._ButtonLayoutType}\" data-toggle=\"tooltip\" title=\"{buttonText}\" {targetModal} {clickfunction}>" + Environment.NewLine);
+            html += ($"<a {href} id=\"{id}\" class=\"btn btn-{this._ButtonLayoutType}\" data-toggle=\"tooltip\" title=\"{buttonText}\" {targetModal} {clickfunction} {blazorClickfunction}>" + Environment.NewLine);
             if (this._IconHelper != null)
             {
                 html += ("   " + this._IconHelper.BuildHtml() + Environment.NewLine.ToString());
