@@ -79,7 +79,7 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
             return this;
         }
 
-        public ButtonHelper RequiresClientFunctionOnCLick(string function)
+        public ButtonHelper RequiresClientFunctionOnClick(string function)
         {
             if (String.IsNullOrEmpty(function))
                 throw new ArgumentNullException(nameof(function));
@@ -212,7 +212,7 @@ namespace Umbrella.UI.Web.MVC.Helpers.HtmlHelpers
             string href = String.IsNullOrEmpty(this._GoToUrl) ? "" : $"href=\"{this._GoToUrl}\"";
             string targetModal = String.IsNullOrEmpty(this._ModalId) ? "" : $"data-bs-toggle=\"modal\" data-bs-target=\"#{this._ModalId}\"";
             string clickfunction = String.IsNullOrEmpty(this._OnClick) ? "" : $"onCLick=\"{this._OnClick}\"";
-            string blazorClickfunction = String.IsNullOrEmpty(this._BlazorOnCLick) ? "" : ("@" + $"onCLick=\"{this._BlazorOnCLick}\"");
+            string blazorClickfunction = String.IsNullOrEmpty(this._BlazorOnCLick) ? "" : ("@" + $"onClick=\"{this._BlazorOnCLick}\"");
 
             html += ($"<a {href} id=\"{id}\" class=\"btn btn-{this._ButtonLayoutType}\" data-toggle=\"tooltip\" title=\"{buttonText}\" {targetModal} {clickfunction} {blazorClickfunction}>" + Environment.NewLine);
             if (this._IconHelper != null)
