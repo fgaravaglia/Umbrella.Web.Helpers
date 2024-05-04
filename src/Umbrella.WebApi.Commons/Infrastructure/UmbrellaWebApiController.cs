@@ -52,7 +52,7 @@ namespace Umbrella.WebApi.Commons.Infrastructure
                                                 Func<string, string, string, IActionResult> action,
                                                 Func<string, Exception, InternalServerErrorActionResult>? errorAction = null)
         {
-            this._Logger.LogInformation("Verifying request {url}", req.GetDisplayUrl());
+            this._Logger.LogInformation("Verifying request {Url}", req.GetDisplayUrl());
             var headerEx = ValidateHeaders(req, out string channel, out string trxId, out string businessTrxId);
             if (headerEx != null)
             {
