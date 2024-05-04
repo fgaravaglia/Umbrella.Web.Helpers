@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 using System.Reflection;
 using Umbrella.WebApi.Commons.Infrastructure.ErrorManagement;
-using Umbrella.WebApi.Commons.SwaggerManagement;
 
 namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
 {
@@ -30,7 +28,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
         {
             try
             {
-                _Logger.Information("Start TransactionId filtering current Action of controller {controllerType}", context.Controller.GetType());
+                _Logger.Information("Start TransactionId filtering current Action of controller {ControllerType}", context.Controller.GetType());
 
                 //check if the method is auhtenticated or not
                 var actionMethod = ExtractMethodFromController(context);
@@ -55,17 +53,17 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
             }
             catch (InvalidDataException securityEx)
             {
-                _Logger.Error(securityEx, "Bad request on controller {controllerType}", context.Controller.GetType());
+                _Logger.Error(securityEx, "Bad request on controller {ControllerType}", context.Controller.GetType());
                 context.Result = new BadRequestActionResult(securityEx.Message, "");
             }
             catch (Exception ex)
             {
-                _Logger.Error(ex, "Unexpected error from filtering action of controller {controllerType}", context.Controller.GetType());
+                _Logger.Error(ex, "Unexpected error from filtering action of controller {ControllerType}", context.Controller.GetType());
                 context.Result = new InternalServerErrorActionResult(ex.Message, "");
             }
             finally
             {
-                _Logger.Information("End TransactionId filtering current Action of controller {controllerType}", context.Controller.GetType());
+                _Logger.Information("End TransactionId filtering current Action of controller {ControllerType}", context.Controller.GetType());
             }
         }
         /// <summary>

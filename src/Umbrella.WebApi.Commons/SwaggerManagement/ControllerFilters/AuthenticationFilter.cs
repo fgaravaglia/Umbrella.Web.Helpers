@@ -35,8 +35,8 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
         {
             try
             {
-                this._Logger.Information("Start filtering current Action of controller {controllerType}", context.Controller.GetType());
-               
+                this._Logger.Information("Start filtering current Action of controller {ControllerType}", context.Controller.GetType());
+
                 //check if the method is auhtenticated or not
                 var actionMethod = ExtractMethodFromController(context);
                 var umbrellaAuthRequiredAttributes = actionMethod.GetCustomAttributes(typeof(SwaggerUmbrellaAuthHeaderRequiredAttribute), true)
@@ -44,39 +44,39 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
                 var isAuthenticated = umbrellaAuthRequiredAttributes.Any();
                 if (!isAuthenticated)
                     return;
-            
+
                 // read umbrella token from request
                 string umbrellaAuthToken = ExtractUmbrellaAuthTokenFromHeader(context.HttpContext.Request);
                 if (String.IsNullOrEmpty(umbrellaAuthToken))
-                    throw new InvalidDataException(SwaggerUmbrellaAuthHeaderRequiredAttribute.ParameterName + " is null");  
+                    throw new InvalidDataException(SwaggerUmbrellaAuthHeaderRequiredAttribute.ParameterName + " is null");
 
                 // verify actual clients configuration
-                var settings = this._Config.GetAuthenticationSettings(); 
+                var settings = this._Config.GetAuthenticationSettings();
                 var clientID = umbrellaAuthToken.Split('|')[0];
                 var secretId = umbrellaAuthToken.Split('|')[1];
-                if(!settings.Clients.Any(x => x.ClientID.Equals(clientID, StringComparison.InvariantCultureIgnoreCase) 
+                if (!settings.Clients.Exists(x => x.ClientID.Equals(clientID, StringComparison.InvariantCultureIgnoreCase)
                                             && x.SecretID.Equals(secretId, StringComparison.InvariantCultureIgnoreCase)))
                 {
                     throw new UmbrellaTokenInvalidException("Client is not authorized to consume API", clientID);
                 }
             }
-            catch(UmbrellaTokenInvalidException securityEx)
+            catch (UmbrellaTokenInvalidException securityEx)
             {
-                this._Logger.Error(securityEx, "Unauthorized access on controller {controllerType}", context.Controller.GetType());
+                this._Logger.Error(securityEx, "Unauthorized access on controller {ControllerType}", context.Controller.GetType());
                 context.Result = new UnauthorizedActionResult(securityEx.Message, "");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                this._Logger.Error(ex, "Unexpected error from filtering action of controller {controllerType}", context.Controller.GetType());
-                if(ex.GetType() == typeof(InvalidDataException) || ex.GetType() == typeof(ArgumentNullException))
+                this._Logger.Error(ex, "Unexpected error from filtering action of controller {ControllerType}", context.Controller.GetType());
+                if (ex.GetType() == typeof(InvalidDataException) || ex.GetType() == typeof(ArgumentNullException))
                     context.Result = new BadRequestActionResult(ex.Message, "");
                 else
                     context.Result = new InternalServerErrorActionResult(ex.Message, "");
             }
             finally
             {
-                this._Logger.Information("End filtering current Action of controller {controllerType}", context.Controller.GetType());
-            }  
+                this._Logger.Information("End filtering current Action of controller {ControllerType}", context.Controller.GetType());
+            }
         }
         /// <summary>
         /// 
@@ -88,19 +88,19 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
         }
 
         #region Private methods
-        
+
         private string ExtractUmbrellaAuthTokenFromHeader(HttpRequest req)
         {
             if (req == null)
                 throw new ArgumentNullException(nameof(req));
 
             string umbrellaAuthToken = "";
-            this._Logger.Debug("Current Headers {headers}", req.Headers);
+            this._Logger.Debug("Current Headers {Headers}", req.Headers);
             if (req.Headers.Any(p => p.Key.Equals(SwaggerUmbrellaAuthHeaderRequiredAttribute.ParameterName, StringComparison.CurrentCultureIgnoreCase)))
                 umbrellaAuthToken = req.Headers
                                         .Single(p => p.Key.Equals(SwaggerUmbrellaAuthHeaderRequiredAttribute.ParameterName, StringComparison.CurrentCultureIgnoreCase))
                                             .Value.ToString();
-                                            
+
             return umbrellaAuthToken;
         }
 
