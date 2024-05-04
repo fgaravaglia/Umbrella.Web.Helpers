@@ -39,7 +39,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
 
                 // read channel value from header
                 string headerValue = "";
-                _Logger.Debug("Current Headers {headers}", context.HttpContext.Request.Headers);
+                _Logger.Debug("Current Headers {Headers}", context.HttpContext.Request.Headers);
                 if (context.HttpContext.Request.Headers.Any(p => p.Key.Equals(SwaggerTrxIdHeaderRequiredAttribute.ParameterName, StringComparison.CurrentCultureIgnoreCase)))
                     headerValue = context.HttpContext.Request.Headers
                                             .Single(p => p.Key.Equals(SwaggerTrxIdHeaderRequiredAttribute.ParameterName, StringComparison.CurrentCultureIgnoreCase))
@@ -90,7 +90,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
             var routeValues = context.ActionDescriptor.RouteValues.ToList();
             if (routeValues.Exists(x => x.Key.ToLowerInvariant() == "action"))
                 actionName = routeValues.Single(x => x.Key.ToLowerInvariant() == "action").Value ?? "";
-            _Logger.Information("ActionName: " + actionName);
+            _Logger.Information("ActionName: {ActionName}", actionName);
 
             var actionMethod = context.Controller.GetType().GetMethods().SingleOrDefault(x => x.Name == actionName);
             if (actionMethod is null)

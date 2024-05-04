@@ -117,7 +117,7 @@ namespace Umbrella.WebApi.Commons.SwaggerManagement.ControllerFilters
             var routeValues = context.ActionDescriptor.RouteValues.ToList();
             if (routeValues.Exists(x => x.Key.ToLowerInvariant() == "action"))
                 actionName = routeValues.Single(x => x.Key.ToLowerInvariant() == "action").Value ?? "";
-            this._Logger.Information("ActionName: " + actionName);
+            this._Logger.Information("ActionName: {ActionName}", actionName);
 
             var actionMethod = context.Controller.GetType().GetMethods().SingleOrDefault(x => x.Name == actionName);
             if (actionMethod is null)

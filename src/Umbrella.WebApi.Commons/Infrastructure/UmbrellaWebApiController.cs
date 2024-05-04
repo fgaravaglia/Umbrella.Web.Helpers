@@ -48,20 +48,20 @@ namespace Umbrella.WebApi.Commons.Infrastructure
         /// <param name="action"></param>
         /// <param name="errorAction">if set, it generates the InternalServer error repsonse; otherwise it is built by default</param>
         /// <returns></returns>
-        protected IActionResult ProcessRequest(HttpRequest req, 
-                                                Func<string, string, string, IActionResult> action, 
+        protected IActionResult ProcessRequest(HttpRequest req,
+                                                Func<string, string, string, IActionResult> action,
                                                 Func<string, Exception, InternalServerErrorActionResult>? errorAction = null)
         {
             this._Logger.LogInformation("Verifying request {url}", req.GetDisplayUrl());
             var headerEx = ValidateHeaders(req, out string channel, out string trxId, out string businessTrxId);
             if (headerEx != null)
             {
-                this._Logger.LogError("Bad Request: {errorMessage}", headerEx.Message);
+                this._Logger.LogError("Bad Request: {ErrorMessage}", headerEx.Message);
                 return new BadRequestActionResult(headerEx.Message, trxId);
             }
 
             // craeting the conttext to wrap the logs
-            using (this._Logger.BeginScope("Context: {context}", new
+            using (this._Logger.BeginScope("Context: {Context}", new
             {
                 Channel = channel,
                 TransactionId = trxId,
@@ -76,12 +76,12 @@ namespace Umbrella.WebApi.Commons.Infrastructure
                 }
                 catch (Exception ex)
                 {
-                    this._Logger.LogError(ex, "Unexpected error during invoke of controller {controlelrType}", this.GetType().Name);
+                    this._Logger.LogError(ex, "Unexpected error during invoke of controller {ControllerType}", this.GetType().Name);
                     if (errorAction != null)
                         return errorAction.Invoke(trxId, ex);
                     else
                     {
-                        if(ex.GetType() == typeof(ArgumentNullException) || ex.GetType() == typeof(ArgumentException))
+                        if (ex.GetType() == typeof(ArgumentNullException) || ex.GetType() == typeof(ArgumentException))
                             return new BadRequestActionResult(ex.Message, trxId);
                         else
                             return new InternalServerErrorActionResult(ex.Message, trxId);
